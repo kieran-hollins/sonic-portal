@@ -2,30 +2,25 @@
 	let currentPortal = 0;
 	const portals = Array(5).fill(null).map(() => randomGradient());
 
-	// Animation timing
-	const displayTime = 2000; // time portal stays visible before fading
-	const animTime = 1000; // must match CSS animation durations
+	const displayTime = 5000; 
+	const animTime = 1000; 
 
 	function randomGradient() {
-		// Generates a radial gradient with two random colors
 		const c1 = `hsl(${Math.random() * 360}, 80%, 60%)`;
 		const c2 = `hsl(${Math.random() * 360}, 80%, 60%)`;
 		return `radial-gradient(circle, ${c1} 0%, ${c2} 100%)`;
 	}
 
 	function nextPortal() {
-		// Trigger arcOut on the current portal
 		const oldPortal = currentPortal;
-		portals[oldPortal] = portals[oldPortal]; // no change, just here for clarity
+		portals[oldPortal] = portals[oldPortal];
 
-		// Wait for arcOut to finish, then switch & randomize
 		setTimeout(() => {
 			currentPortal = (currentPortal + 1) % portals.length;
 			portals[currentPortal] = randomGradient();
 		}, animTime);
 	}
 
-	// Loop through portals
 	setInterval(nextPortal, displayTime);
 </script>
 
@@ -60,7 +55,7 @@
 	position: absolute;
 	opacity: 0;
 	transform: translate3d(-480px, 480px, 0);
-    filter: blur(3px);
+    filter: blur(20px);
 }
 
 @keyframes arcIn {
